@@ -1,0 +1,256 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+
+
+[palette]
+blue = "12"
+grey = "8"
+cyan = "14"
+green = "10"
+purple = "#c6a0f6"
+red = "9"
+white = "15"
+yellow = "11"
+dark-red = "1"
+dark-yellow = "3"
+light-purple = "13"
+electric-green = "#00FF00"
+dark-blue = "4"
+pure-red = "#ff0000"
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+type = 'session'
+style = 'plain'
+foreground = 'p:green'
+template = '<p:grey>╭─[</>{{ if .SSHSession }} {{ end }}{{ .UserName }}<p:red>@</><p:cyan>{{ .HostName }}</><p:grey>]</>'
+
+[[blocks.segments]]
+type = 'root'
+style = 'plain'
+foreground = 'p:dark-yellow'
+template = '(󱐋)'
+
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+foreground = 'p:purple'
+template = '<p:grey>—[</>{{ .UpstreamIcon }} {{ .HEAD }}'
+
+[blocks.segments.properties]
+fetch_upstream_icon = true
+branch_icon = ' '
+
+
+[[blocks.segments]]
+template = "{{if .BranchStatus }} {{ .BranchStatus }}{{ end }} "
+type = 'git'
+style = 'plain'
+foreground = 'p:red'
+foreground_templates = [
+  '{{ if contains "" .BranchStatus  }}p:blue{{ end }}',
+  '{{ if contains "" .BranchStatus }}p:green{{ end }}',
+  '{{ if contains "" .BranchStatus }}p:dark-red{{ end }}',
+]
+
+[blocks.segments.properties]
+fetch_status = true
+branch_identical_icon = ''
+branch_ahead_icon = ' '
+branch_behind_icon = ' '
+branch_gone_icon = '  '
+
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+foreground = 'p:light-purple'
+template = '{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<p:red>  {{ .Staging.String }}</>{{ end }}<p:grey>]</>'
+
+[blocks.segments.properties]
+fetch_status = true
+
+[[blocks.segments]]
+template = ' {{ .FormattedMs }}'
+type = 'executiontime'
+foreground = '#6e738d'
+style = 'plain'
+
+[blocks.segments.properties]
+style = 'roundrock'
+threshold = 0.0
+
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+
+[[blocks.segments]]
+type = 'node'
+style = 'plain'
+foreground = '#3C873A'
+template = '<p:grey>(</> {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}<p:grey>)</>'
+
+[blocks.segments.properties]
+fetch_package_manager = true
+npm_icon = ' <#cc3a3a></> '
+yarn_icon = ' <#348cba></>'
+
+[[blocks.segments]]
+type = 'python'
+style = 'plain'
+foreground = '#FFE873'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'java'
+style = 'plain'
+foreground = '#ec2729'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'dotnet'
+style = 'plain'
+foreground = '#0d6da8'
+template = '<p:grey>(</> {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'go'
+style = 'plain'
+foreground = '#06aad5'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'rust'
+style = 'plain'
+foreground = '#925837'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'dart'
+style = 'plain'
+foreground = '#055b9c'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'angular'
+style = 'plain'
+foreground = '#ce092f'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'nx'
+style = 'plain'
+foreground = 'p:grey'
+template = '<p:grey>(</>{{ if .Error }}{{ .Error }}{{ else }}Nx {{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'julia'
+style = 'plain'
+foreground = '#359a25'
+template = '<p:grey>(</><#ca3c34></> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'ruby'
+style = 'plain'
+foreground = '#9c1006'
+template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'azfunc'
+style = 'plain'
+foreground = '#5398c2'
+template = '<p:grey>(</><#f5bf45></> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'aws'
+style = 'plain'
+foreground = '#faa029'
+template = '<p:grey>(</> {{.Profile}}{{if .Region}}@{{.Region}}{{end}}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'kubectl'
+style = 'plain'
+foreground = '#316ce4'
+template = '<p:grey>(</> {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<p:grey>)</>'
+
+[[blocks.segments]]
+type = 'os'
+style = 'plain'
+foreground = 'p:white'
+foreground_templates = [
+  '{{if eq .OS "linux"}}#cb91f2{{ end }}',
+  '{{if eq .OS "endeavouros"}}#7f37bf{{ end }}',
+  '{{if eq .OS "ubuntu"}}#e95420{{ end }}',
+  '{{if eq .OS "windows"}}#00a4ef{{ end }}',
+]
+template = '<p:grey>(</>{{ if .WSL }}WSL {{ end }}{{.Icon}} <p:grey>)—</>'
+
+[blocks.segments.properties]
+endeavouros = ''
+linux = ''
+macos = ''
+windows = ''
+
+[[blocks.segments]]
+type = 'time'
+style = 'plain'
+foreground = 'p:yellow'
+template = '<p:grey>[</>{{ .CurrentDate | date .Format }}<p:grey>]</>'
+
+[blocks.segments.properties]
+time_format = '15:04:03'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'path'
+style = 'diamond'
+foreground = 'p:white'
+leading_diamond = '<p:grey>󰇙</>'
+template = "{{ .Path }} "
+
+[blocks.segments.properties]
+folder_icon = '…󱧭…'
+folder_separator_icon = '  '
+style = 'agnoster_short'
+max_depth = 3
+home_icon = " "
+
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'text'
+style = 'plain'
+foreground = 'p:grey'
+template = '╰─'
+
+
+[[blocks.segments]]
+type = 'status'
+style = 'plain'
+foreground = 'p:electric-green'
+foreground_templates = ['{{ if gt .Code 0 }}p:pure-red{{ end }}']
+template = ' '
+
+[blocks.segments.properties]
+always_enabled = true
+
+
+[transient_prompt]
+foreground = 'p:white'
+template = '{{ .PromptCount }}  '
+foreground_templates = ['{{ if gt .Code 0 }}p:pure-red{{ end }}']
+
+[secondary_prompt]
+foreground = 'p:electric-green'
+template = ' '
