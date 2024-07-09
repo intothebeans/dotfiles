@@ -9,6 +9,7 @@ return {
 
   -- These are some examples, uncomment them if you want to see them work!
 
+  { "wakatime/vim-wakatime", lazy = false}
   { "christoomey/vim-tmux-navigator", lazy = false },
   { "github/copilot.vim", lazy = false },
   {
@@ -24,7 +25,7 @@ return {
         "emmet-language-server",
         "json-lsp",
         "markdown-oxide",
-        "markdownlint"
+        "markdownlint",
       },
     },
     lazy = false,
@@ -36,7 +37,7 @@ return {
       require "configs.lspconfig"
     end,
   },
-  {"lewis6991/gitsigns.nvim", lazy = false,},
+  { "lewis6991/gitsigns.nvim", lazy = false },
   {
     "b0o/schemastore.nvim",
   },
@@ -47,7 +48,6 @@ return {
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
     lazy = false,
-
   },
   {
     "nvim-treesitter/nvim-treesitter",
