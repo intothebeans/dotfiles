@@ -1,0 +1,7 @@
+"user": {
+        "format": " {work_H}:{work_M}",
+        "interval": 60,
+        "height": 30,
+        "width": 30,
+        "icon": true,
+},
