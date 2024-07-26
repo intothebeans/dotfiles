@@ -222,6 +222,21 @@ style = 'agnoster_short'
 max_depth = 3
 home_icon = " "
 
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+newline = false
+
+[[blocks.segments]]
+type = "wakatime"
+style = 'plain'
+template=' {{ secondsRound .CumulativeTotal.Seconds }}'
+foreground='p:blue'
+
+[blocks.segments.properties]
+url = "https://wakatime.com/api/v1/users/current/summaries?start=today&end=today&api_key={{ .Env.WAKATIME_API_KEY }}"
+cache_timeout = 10
+http_timeout = 500
 
 [[blocks]]
 type = 'prompt'
