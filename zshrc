@@ -26,7 +26,7 @@ zinit snippet OMZP::archlinux
 
 
 # Aliases
-alias vim="nvim"
+alias nv="nvim"
 alias ls="eza --color=always --icons=always --hyperlink -F"
 alias s="kitten ssh"
 alias tree="eza -T"
