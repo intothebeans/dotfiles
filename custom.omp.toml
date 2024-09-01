@@ -181,15 +181,15 @@ type = 'os'
 style = 'plain'
 foreground = 'p:white'
 foreground_templates = [
-  '{{if eq .OS "linux"}}#cb91f2{{ end }}',
-  '{{if eq .OS "endeavouros"}}#7f37bf{{ end }}',
+ '{{if eq .OS "linux"}}#cb91f2{{ end }}',
+  '{{if eq .OS "endeavouros"}}#3c6eb4{{ end }}',
   '{{if eq .OS "ubuntu"}}#e95420{{ end }}',
   '{{if eq .OS "windows"}}#00a4ef{{ end }}',
 ]
-template = '<p:grey>(</>{{ if .WSL }}WSL {{ end }}{{.Icon}} <p:grey>)—</>'
+template = '<p:grey>(</>{{ if .WSL }}WSL {{ end }} {{.Icon}} <p:grey>)—</>'
 
 [blocks.segments.properties]
-endeavouros = ''
+endeavouros = ''
 linux = ''
 macos = ''
 windows = ''

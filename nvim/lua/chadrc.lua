@@ -5,8 +5,8 @@
 local M = {}
 
 M.ui = {
-	theme_toggle = { "catppuccin", "one_light" },
-	theme = "catppuccin",
+	theme_toggle = { "everforest", "one_light" },
+	theme = "everforest",
 	hl_override = {
 		Comment = { italic = true },
 		["@comment"] = { italic = true },
