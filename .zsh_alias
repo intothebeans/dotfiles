@@ -1,0 +1,40 @@
+# ls command
+alias ls='eza --color=always --icons=always --hyperlink --classify=always --group-directories-first'
+alias l='ls -lho'
+alias la='ls -A'
+alias lla='ls -lhoA'
+alias lr='ls -lRA --sort=date'
+alias lt='ls -lA --sort=date'
+alias lart='ls -1a --sort=age'
+alias lrt='ls -1 --sort=age'
+alias lsr='ls -1R'
+alias lsn='ls -1'
+
+# file handling
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mvup='rsync -avzu --progress -h'
+alias mvs='rsync -avzu --delete --progress -h'
+alias t='tail -f'
+
+# head tail shortcuts
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g L='| less'
+
+# pacman 
+alias pacin='sudo pacman -S'
+
+
+# other
+alias h='history'
+alias tr='trash'
+alias tree="eza -AT --color=always --icons=always --hyperlink --classify=always -I .git"
+alias se="sudoedit"
+alias nv="nvim"
+alias prev-log="SYSTEMD_COLORS=1 journalctl -b 1 -k | less +^ -r"
+alias sudo="sudo "
+alias vim="nvim"
+
