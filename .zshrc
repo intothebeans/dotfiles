@@ -18,10 +18,26 @@ show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
+_fzf_comprun() {
+    local cmd=$1 
+    shift 
+
+    case "$cmd" in 
+        cd)
+            fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+        export|unset)
+            fzf --preview "eval 'echo ${}'" "$@" ;;
+        ssh)
+            fzf --preview 'dig {}' "$@" ;;
+        *)
+            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+    esac
+}
+
 # variables
 export EDITOR="nvim"
 export SUDO_EDITOR="$HOME/.local/share/bob/nvim-bin/nvim"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/.local/bin"
 export BAT_THEME='gruvbox-dark'
 
 
@@ -69,7 +85,7 @@ setopt hist_find_no_dups
 
 # Source other files 
 eval "$(zoxide init --cmd cd zsh)"
-#eval "$(thefuck --alias tf)"
+eval "$(thefuck --alias tf)"
 eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export NVM_DIR="$HOME/.nvm"
