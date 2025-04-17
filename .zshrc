@@ -13,7 +13,7 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 # FZF configuration
-show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always -A {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
@@ -24,7 +24,7 @@ _fzf_comprun() {
 
     case "$cmd" in 
         cd)
-            fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+            fzf --preview 'eza --tree --color=always {} -A | head -200' "$@" ;;
         export|unset)
             fzf --preview "eval 'echo ${}'" "$@" ;;
         ssh)
@@ -34,9 +34,17 @@ _fzf_comprun() {
     esac
 }
 
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
 # variables
 export EDITOR="nvim"
-export SUDO_EDITOR="$HOME/.local/share/bob/nvim-bin/nvim"
+export SUDO_EDITOR="nvim"
 export PATH="$PATH:$HOME/.local/bin"
 export BAT_THEME='gruvbox-dark'
 
@@ -59,7 +67,7 @@ zinit snippet OMZP::colored-man-pages
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color --icons --classify -A $realpath'
 
 # Load completions
 autoload -Uz compinit && compinit

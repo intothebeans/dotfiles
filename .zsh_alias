@@ -1,14 +1,10 @@
 # ls command
 alias ls='eza --color=always --icons=always --hyperlink --classify=always --group-directories-first'
-alias l='ls -lho'
-alias la='ls -A'
-alias lla='ls -lhoA'
-alias lr='ls -lRA --sort=date'
-alias lt='ls -lA --sort=date'
-alias lart='ls -1a --sort=age'
-alias lrt='ls -1 --sort=age'
-alias lsr='ls -1R'
-alias lsn='ls -1'
+alias l='ls -lho' # long 
+alias la='ls -A' # all excluding . and ..
+alias lla='ls -lhoA' # long and all 
+alias lt='ls -1AT 2 --sort=date' # sort by date 
+alias lrt='ls -1AT 2 --sort=age' # sort by date reverse
 
 # file handling
 alias rm='rm -i'
@@ -24,17 +20,34 @@ alias -g T='| tail'
 alias -g G='| grep'
 alias -g L='| less'
 
-# pacman 
-alias pacin='sudo pacman -S'
-
+# package manager 
+alias parin='paru -S' # install package 
+alias parins='paru -U' # install package locally 
+alias parinsd='paru -S --asdeps' # install package as dependency
+alias parcl='paru -Sc' # clean cache
+alias parloc='paru -Qi' # package info
+alias parlocs='paru -Qs' # search package
+alias parclr='paru -Scc' # remove all files from cache 
+alias parorphans='paru -Qdtq' # list orphans
+alias parmir='paru -Syy' # force refresh 
+alias parre='paru -R' # remove package
+alias parrem='paru -Rns' # remove package and dependencies
+alias parrep='paru -Si' # display information about package in repository 
+alias parreps='paru -Ss' # search package in repository
+alias parrmorphans='paru -Rs $(paru -Qdtq)' # remove orphans
+alias upgrade='paru -Syu' # update system
+alias parfileupg='paru -Fy' # update file database
+alias parfiles='paru -F' # search file in repository
+alias parls='paru -Ql' # list files in package
+alias parown='paru -Qo' # list package that owns files
+alias update='sudo eos-update' # update system
 
 # other
 alias h='history'
 alias tr='trash'
-alias tree="eza -AT --color=always --icons=always --hyperlink --classify=always -I .git"
-alias se="sudoedit"
-alias nv="nvim"
-alias prev-log="SYSTEMD_COLORS=1 journalctl -b 1 -k | less +^ -r"
-alias sudo="sudo "
-alias vim="nvim"
-
+alias tree='eza -ATL 5 --color=always --icons=always --hyperlink --classify=always -I .git'
+alias se='sudoedit'
+alias nv='nvim'
+alias prev-log='SYSTEMD_COLORS=1 journalctl -b 1 -k | less +^ -r'
+alias sudo='sudo '
+alias vim='nvim'
